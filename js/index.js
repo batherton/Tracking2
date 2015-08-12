@@ -58,11 +58,11 @@ var app = {
 			        //
 			        	 var http = new XMLHttpRequest();
 						 var url = "http://www.loadstatus.com/Tracking/";
-						 var params = "DeviceID="+document.getElementById('DeviceID').value;
-						 var params = params+"&UserName="+document.getElementById('UserName').value;
-						 var params = params+"&Password="+document.getElementById('Password').value;
-						 var params = params+"&Longitude="+document.getElementById('Longitude').value;
-						 var params = params+"&Latitude="+document.getElementById('Latitude').value;
+						 var params = "DeviceID=1";
+						 //var params = params+"&UserName="+document.getElementById('UserName').value;
+						 //var params = params+"&Password="+document.getElementById('Password').value;
+						 var params = params+"&Longitude="+location.latitude;
+						 var params = params+"&Latitude="+location.longitude;
 						 http.open("POST", url, true);
 						 http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 						 http.setRequestHeader("Content-length", params.length);
