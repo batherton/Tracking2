@@ -35,12 +35,12 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
             window.navigator.geolocation.getCurrentPosition(function(location) {
-		        console.log('Location from Phonegap');
+		        //console.log('Location from Phonegap');
 		    });
     		var bgGeo = window.plugins.backgroundGeoLocation;
 
      		var PostLocationToServer = function(response) {
-				//alert('PLTS' + response);
+			//alert('PLTS' + response);
 	        ////
 	        // IMPORTANT:  You must execute the #finish method here to inform the native plugin that you're finished,
 	        //  and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
@@ -74,19 +74,12 @@ var app = {
 						 }
 						 http.send(params);
 
-
-
-
-
-
-
 			    PostLocationToServer.call(this);
 			    };
 
 			    var failureFn = function(error) {
-			        console.log('BackgroundGeoLocation error');
+			        //console.log('BackgroundGeoLocation error');
    				}
-
 
     			// BackgroundGeoLocation is highly configurable.
     			bgGeo.configure(callbackFn, failureFn, {
@@ -98,7 +91,7 @@ var app = {
         		headers: {                                   // <-- Android ONLY:  Optional HTTP headers sent to your configured #url when persisting locations
        		     "X-Foo": "BAR"
        			 },
-        		 desiredAccuracy: 10,
+        		 desiredAccuracy: 0,
        			 stationaryRadius: 20,
        			 distanceFilter: 30,
        			 notificationTitle: 'Background tracking', // <-- android only, customize the title of the notification
