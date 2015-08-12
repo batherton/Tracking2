@@ -51,7 +51,6 @@ var app = {
      		};
 
      		var callbackFn = function(location) {
-				//alert('cbfn'+location);
 			    //console.log('[js] BackgroundGeoLocation callback:  ' + location.latitude + ',' + location.longitude);
 			        // Do your HTTP request here to POST location to your server.
 			        //
@@ -97,7 +96,7 @@ var app = {
        			 notificationTitle: 'Background tracking', // <-- android only, customize the title of the notification
        			 notificationText: 'ENABLED', // <-- android only, customize the text of the notification
        			 activityType: 'AutomotiveNavigation',
-       			 debug: false, // <-- enable this hear sounds for background-geolocation life-cycle.
+       			 debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
        			 stopOnTerminate: false // <-- enable this to clear background location settings when the app terminates
     			});
 
