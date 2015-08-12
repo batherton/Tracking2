@@ -40,7 +40,7 @@ var app = {
     		var bgGeo = window.plugins.backgroundGeoLocation;
 
      		var PostLocationToServer = function(response) {
-				alert(response);
+				alert('PLTS' + response);
 	        ////
 	        // IMPORTANT:  You must execute the #finish method here to inform the native plugin that you're finished,
 	        //  and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
@@ -51,7 +51,8 @@ var app = {
      		};
 
      		var callbackFn = function(location) {
-			    console.log('[js] BackgroundGeoLocation callback:  ' + location.latitude + ',' + location.longitude);
+				alert('cbfn'+location);
+			    //console.log('[js] BackgroundGeoLocation callback:  ' + location.latitude + ',' + location.longitude);
 			        // Do your HTTP request here to POST location to your server.
 			        //
 			        //
