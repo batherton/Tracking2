@@ -34,6 +34,62 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+            window.navigator.geolocation.getCurrentPosition(function(location) {
+		        console.log('Location from Phonegap');
+		    });
+    		var bgGeo = window.plugins.backgroundGeoLocation;
+
+     		var PostLocationToServer = function(response) {
+	        ////
+	        // IMPORTANT:  You must execute the #finish method here to inform the native plugin that you're finished,
+	        //  and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
+	        // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
+	        //
+	        //
+	        bgGeo.finish();
+     		};
+
+     		var callbackFn = function(location) {
+			    console.log('[js] BackgroundGeoLocation callback:  ' + location.latitude + ',' + location.longitude);
+			        // Do your HTTP request here to POST location to your server.
+			        //
+			        //
+			    PostLocationToServer.call(this);
+			    };
+
+			    var failureFn = function(error) {
+			        console.log('BackgroundGeoLocation error');
+   				}
+
+
+    			// BackgroundGeoLocation is highly configurable.
+    			bgGeo.configure(callbackFn, failureFn, {
+      			  url: 'http://www.loadstatus.com/Tracking/', // <-- Android ONLY:  your server url to send locations to
+      			  params: {
+       			     auth_token: 'user_secret_auth_token',    //  <-- Android ONLY:  HTTP POST params sent to your server when persisting locations.
+       			     foo: 'bar'                              //  <-- Android ONLY:  HTTP POST params sent to your server when persisting locations.
+        		 },
+        		headers: {                                   // <-- Android ONLY:  Optional HTTP headers sent to your configured #url when persisting locations
+       		     "X-Foo": "BAR"
+       			 },
+        		 desiredAccuracy: 10,
+       			 stationaryRadius: 20,
+       			 distanceFilter: 30,
+       			 notificationTitle: 'Background tracking', // <-- android only, customize the title of the notification
+       			 notificationText: 'ENABLED', // <-- android only, customize the text of the notification
+       			 activityType: 'AutomotiveNavigation',
+       			 debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
+       			 stopOnTerminate: false // <-- enable this to clear background location settings when the app terminates
+    			});
+
+    			// Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
+    			bgGeo.start();
+
+    			// If you wish to turn OFF background-tracking, call the #stop method.
+    			// bgGeo.stop()
+
+
+
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
