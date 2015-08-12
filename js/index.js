@@ -40,7 +40,7 @@ var app = {
     		var bgGeo = window.plugins.backgroundGeoLocation;
 
      		var PostLocationToServer = function(response) {
-				alert('PLTS' + response);
+				//alert('PLTS' + response);
 	        ////
 	        // IMPORTANT:  You must execute the #finish method here to inform the native plugin that you're finished,
 	        //  and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
@@ -51,11 +51,35 @@ var app = {
      		};
 
      		var callbackFn = function(location) {
-				alert('cbfn'+location);
+				//alert('cbfn'+location);
 			    //console.log('[js] BackgroundGeoLocation callback:  ' + location.latitude + ',' + location.longitude);
 			        // Do your HTTP request here to POST location to your server.
 			        //
 			        //
+			        	 var http = new XMLHttpRequest();
+						 var url = "http://www.loadstatus.com/Tracking/";
+						 var params = "DeviceID="+document.getElementById('DeviceID').value;
+						 var params = params+"&UserName="+document.getElementById('UserName').value;
+						 var params = params+"&Password="+document.getElementById('Password').value;
+						 var params = params+"&Longitude="+document.getElementById('Longitude').value;
+						 var params = params+"&Latitude="+document.getElementById('Latitude').value;
+						 http.open("POST", url, true);
+						 http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+						 http.setRequestHeader("Content-length", params.length);
+						 http.setRequestHeader("Connection", "close");
+						 http.onreadystatechange = function() {
+						    if(http.readyState == 4) {
+
+			        	    }
+						 }
+						 http.send(params);
+
+
+
+
+
+
+
 			    PostLocationToServer.call(this);
 			    };
 
