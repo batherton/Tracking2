@@ -38,10 +38,6 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 
-		window.plugins.atalandaGPSTracker.configure({
-		  url: "http://www.loadstatus.com/Tracking/"
-		});
-		window.plugins.atalandaGPSTracker.startTracking();
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
