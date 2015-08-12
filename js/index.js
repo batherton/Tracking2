@@ -91,7 +91,7 @@ var app = {
         		headers: {                                   // <-- Android ONLY:  Optional HTTP headers sent to your configured #url when persisting locations
        		     "X-Foo": "BAR"
        			 },
-        		 desiredAccuracy: 0,
+        		 desiredAccuracy: 10,
        			 stationaryRadius: 20,
        			 distanceFilter: 30,
        			 notificationTitle: 'Background tracking', // <-- android only, customize the title of the notification
